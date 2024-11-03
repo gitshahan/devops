@@ -11,8 +11,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Check out the repository
+    - name: Check out
       uses: actions/checkout@v4
     
-    - name: Run a simple script
-      run: echo "Hello, GitHub Actions!"
+    - name: Docker build
+      run: docker build -t ${{ secrets.ACR_NAME }}.azurecr.io/${{ secrets.ACR_NAME }}:${{ github.sha }} .
+    
+    - name: ACR Login
+      uses: azure/docker-login@v2
+      with:
+        login-server: ${{ secrets.ACR_NAME }}.azurecr.io
+        username: ${{ secrets.ACR_NAME }}
+        password: ${{ secrets.ACR_PASS }}
+
+    - name: Push image
+      run: docker push ${{ secrets.ACR_NAME }}.azurecr.io/${{ secrets.ACR_NAME }}:${{ github.sha }}
