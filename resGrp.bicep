@@ -42,5 +42,13 @@ resource function 'Microsoft.Web/sites@2020-12-01' = {
   properties: {
     serverFarmId: asp.id
     httpsOnly: true
+    siteConfig: {
+      appSettings: [
+        {
+          name: 'FUNCTIONS_WORKER_RUNTIME'
+          value: 'python'
+        }
+      ]
+    }
   }
 }
