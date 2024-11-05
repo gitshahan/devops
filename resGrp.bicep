@@ -64,6 +64,7 @@ resource function 'Microsoft.Web/sites@2020-12-01' = {
           name: 'DOCKER_REGISTRY_SERVER_PASSWORD'
           value: acr.listCredentials().passwords[0].value
         }
+        { name: 'FUNCTIONS_EXTENSION_VERSION', value: '~4' }
       ]
     }
   }

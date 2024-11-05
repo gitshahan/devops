@@ -26,10 +26,3 @@ jobs:
 
     - name: Push image
       run: docker push ${{ secrets.ACR_NAME }}.azurecr.io/${{ secrets.ACR_NAME }}
-
-    - name: Deploy Function App
-      run: |
-        az functionapp config container set \
-          --name ${{ secrets.FUNCTION_APP_NAME }} \
-          --resource-group ${{ secrets.RESOURCE_GROUP }} \
-          --docker-custom-image-name "${{ secrets.ACR_NAME }}.azurecr.io/${{ secrets.ACR_NAME }}:latest"
