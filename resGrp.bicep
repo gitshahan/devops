@@ -30,6 +30,9 @@ resource asp 'Microsoft.Web/serverfarms@2020-12-01' = {
     name: 'B1'
     capacity: 1
   }
+  properties: {
+    reserved: true
+  }
 }
 
 resource function 'Microsoft.Web/sites@2020-12-01' = {
