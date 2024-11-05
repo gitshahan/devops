@@ -35,6 +35,8 @@ gh auth login
 gh repo create mponafunc --private
 gh secret set ACR_NAME -b"${acrName}" -R gitshahan/mponafunc
 gh secret set ACR_PASS -b"${ACRPASS}" -R gitshahan/mponafunc
+gh secret set FUNCTION_APP_NAME -b"${functionName}" -R gitshahan/mponafunc
+gh secret set RESOURCE_GROUP -b"${rgName}" -R gitshahan/mponafunc
 git init
 git add .
 git commit -m "first commit"
