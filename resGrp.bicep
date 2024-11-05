@@ -6,14 +6,11 @@ param acrName string
 @description('ACR SKU (Basic, Standard, Premium)')
 param acrSKU string
 
-@description('KeyVault Name')
-param kvName string
+@description('App Service Plan Name')
+param aspName string
 
-@description('KeyVault SKU (Standard, Premium)')
-param kvSKU string
-
-@description('Logged in user\'s object id')
-param currUser string
+@description('Function App name')
+param functionName
 
 resource acr 'Microsoft.ContainerRegistry/registries@2023-11-01-preview' = {
   name: acrName
@@ -26,17 +23,21 @@ resource acr 'Microsoft.ContainerRegistry/registries@2023-11-01-preview' = {
   }
 }
 
-resource keyvault 'Microsoft.KeyVault/vaults@2023-07-01' = {
-  name: kvName
+resource asp 'Microsoft.Web/serverfarms@2020-12-01' = {
+  name: aspName
   location: resourceGroup().location
+  sku: {
+    name: 'F1'
+    capacity: 1
+  }
+}
+
+resource function 'Microsoft.Web/sites@2020-12-01' = {
+  name: functionName
+  location: resourceGroup().location
+  kind: 'functionapp'
   properties: {
-    sku: {
-      name: kvSKU
-      family: 'A'
-    }
-    tenantId: subscription().tenantId
-    accessPolicies: [
-      { objectId: currUser, permissions: { secrets: ['all'] }, tenantId: subscription().tenantId }
-    ]
+    serverFarmId: asp.id
+    httpsOnly: true
   }
 }
