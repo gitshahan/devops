@@ -15,7 +15,7 @@ Run following commands that will clone this repo, create [resource group](./sub.
 ```bash
 git clone https://github.com/gitshahan/devops
 az deployment sub create --name $rgName --location $location --template-file devops/sub.bicep --parameters rgName=$rgName rgLocation=$location
-az deployment group create --resource-group $rgName --template-file devops/resGrp.bicep --parameters acrName=$acrName acrSKU=$acrSKU kvName=$kvName kvSKU=$kvSKU currUser=$currUser
+az deployment group create --resource-group $rgName --template-file devops/resGrp.bicep --parameters acrName=$acrName acrSKU=$acrSKU aspName=$aspName functionName=$functionName
 ACRPASS=$(az acr credential show --name $acrName --query "passwords[0].value" -o tsv)
 ```
 ### Init Function Template
