@@ -27,7 +27,7 @@ resource asp 'Microsoft.Web/serverfarms@2020-12-01' = {
   name: aspName
   location: resourceGroup().location
   sku: {
-    name: 'F1'
+    name: 'B1'
     capacity: 1
   }
 }
