@@ -48,6 +48,10 @@ resource function 'Microsoft.Web/sites@2020-12-01' = {
           name: 'FUNCTIONS_WORKER_RUNTIME'
           value: 'python'
         }
+        {
+          name: 'PYTHON_VERSION'
+          value: '3.11.10'
+        }
       ]
     }
   }
