@@ -27,7 +27,7 @@ resource asp 'Microsoft.Web/serverfarms@2020-12-01' = {
   name: aspName
   location: resourceGroup().location
   sku: {
-    name: 'B1'
+    name: 'Y1'
     capacity: 1
   }
   properties: {
@@ -43,15 +43,26 @@ resource function 'Microsoft.Web/sites@2020-12-01' = {
     serverFarmId: asp.id
     httpsOnly: true
     siteConfig: {
-      linuxFxVersion: 'Python|3.11'
       appSettings: [
         {
-          name: 'FUNCTIONS_EXTENSION_VERSION'
-          value: '~4'
+          name: 'WEBSITE_RUN_FROM_PACKAGE'
+          value: '1'
         }
         {
           name: 'FUNCTIONS_WORKER_RUNTIME'
           value: 'python'
+        }
+        {
+          name: 'DOCKER_REGISTRY_SERVER_URL'
+          value: 'https://${acr.properties.loginServer}'
+        }
+        {
+          name: 'DOCKER_REGISTRY_SERVER_USERNAME'
+          value: acr.listCredentials().username
+        }
+        {
+          name: 'DOCKER_REGISTRY_SERVER_PASSWORD'
+          value: acr.listCredentials().passwords[0].value
         }
       ]
     }
