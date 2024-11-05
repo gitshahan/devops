@@ -49,6 +49,10 @@ resource function 'Microsoft.Web/sites@2020-12-01' = {
           name: 'FUNCTIONS_EXTENSION_VERSION'
           value: '~4'
         }
+        {
+          name: 'FUNCTIONS_WORKER_RUNTIME'
+          value: 'python'
+        }
       ]
     }
   }
