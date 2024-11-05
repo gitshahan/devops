@@ -4,6 +4,7 @@ FROM mcr.microsoft.com/azure-functions/python:4-python3.11
 # Set the working directory to /home/site/wwwroot
 WORKDIR /home/site/wwwroot
 
+
 # Copy the requirements file and install dependencies
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
@@ -15,4 +16,4 @@ COPY . .
 EXPOSE 80
 
 # Command to run the Azure Functions host
-CMD [ "python", "-m", "azure_functions_worker.startup", "--host", "0.0.0.0", "--port", "80" ]
+CMD [ "/azure-functions-host", "start" ]
