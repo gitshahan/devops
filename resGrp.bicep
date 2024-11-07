@@ -25,6 +25,7 @@ resource function 'Microsoft.Web/sites@2020-12-01' = {
   properties: {
     serverFarmId: asp.id
     siteConfig: {
+      linuxFxVersion: 'Python|3.11'
       appSettings: [
         {
           name: 'FUNCTIONS_EXTENSION_VERSION'
