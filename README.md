@@ -3,12 +3,10 @@ Setup your azure function with following instructions.
 ### Variables
 Open azue cli from portal, update values in following lines and run them. These values will be used to provision services required for your function app.
 ```bash
-export location="eastus2"  
-export rgName="mponaapi"  
-export acrName="mponaacr"  
-export acrSKU="Basic"  
-export aspName="mponaasp"  
-export functionName="mponaapi"
+export location="westus2"  
+export rgName="devopsrg"
+export aspName="devopsasp"  
+export functionName="devops"
 ```
 ### Provision Services
 Run following commands that will clone this repo, create [resource group](./sub.bicep), [ACR, ASP and Function](./resGrp.bicep) in your azure subscription.
