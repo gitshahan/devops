@@ -13,7 +13,7 @@ Run following commands that will clone this repo, create [resource group](./sub.
 ```bash
 git clone https://github.com/gitshahan/devops
 az deployment sub create --name $rgName --location $location --template-file devops/sub.bicep --parameters rgName=$rgName rgLocation=$location
-az deployment group create --resource-group $rgName --template-file devops/resGrp.bicep --parameters acrName=$acrName acrSKU=$acrSKU aspName=$aspName functionName=$functionName
+az deployment group create --resource-group $rgName --template-file devops/resGrp.bicep --parameters aspName=$aspName functionName=$functionName
 ```
 ### Init Function Template
 Setup azure function python template locally.
