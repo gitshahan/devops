@@ -21,7 +21,7 @@ resource asp 'Microsoft.Web/serverfarms@2020-12-01' = {
 resource function 'Microsoft.Web/sites@2020-12-01' = {
   name: functionName
   location: resourceGroup().location
-  kind: 'functionapp, linux'
+  kind: 'functionapp,linux'
   properties: {
     serverFarmId: asp.id
     siteConfig: {
