@@ -3,20 +3,17 @@ Setup your azure function with following instructions.
 ### Variables
 Open azue cli from portal, update values in following lines and run them. These values will be used to provision services required for your function app.
 ```bash
-export location="eastus2"  
-export rgName="mponaapi"  
-export acrName="mponaacr"  
-export acrSKU="Basic"  
-export aspName="mponaasp"  
-export functionName="mponaapi"
+export location="westus2"  
+export rgName="devopsrg"
+export aspName="devopsasp"  
+export functionName="devops"
 ```
 ### Provision Services
 Run following commands that will clone this repo, create [resource group](./sub.bicep), [ACR, ASP and Function](./resGrp.bicep) in your azure subscription.
 ```bash
 git clone https://github.com/gitshahan/devops
 az deployment sub create --name $rgName --location $location --template-file devops/sub.bicep --parameters rgName=$rgName rgLocation=$location
-az deployment group create --resource-group $rgName --template-file devops/resGrp.bicep --parameters acrName=$acrName acrSKU=$acrSKU aspName=$aspName functionName=$functionName
-ACRPASS=$(az acr credential show --name $acrName --query "passwords[0].value" -o tsv)
+az deployment group create --resource-group $rgName --template-file devops/resGrp.bicep --parameters aspName=$aspName functionName=$functionName
 ```
 ### Init Function Template
 Setup azure function python template locally.
